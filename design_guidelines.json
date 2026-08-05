@@ -1,0 +1,132 @@
+{
+  "project_name": "The Bullet Zone",
+  "theme_strategy": "dark-only",
+  "archetype": "LUXURY_INDUSTRIAL (ARCHETYPE 5 with ARCHETYPE 2 precision)",
+  "typography": {
+    "headings": {
+      "font_family": "Clash Display, sans-serif",
+      "weights": ["400", "500", "600", "700"],
+      "tracking": "tracking-tighter",
+      "max_size": "text-5xl md:text-6xl"
+    },
+    "body": {
+      "font_family": "Manrope, sans-serif",
+      "weights": ["300", "400"],
+      "leading": "leading-relaxed"
+    },
+    "accent_labels": {
+      "font_family": "Manrope, sans-serif",
+      "style": "uppercase text-xs tracking-[0.2em] font-medium text-[#D4AF37]"
+    }
+  },
+  "colors": {
+    "backgrounds": {
+      "base": "#050505",
+      "surface_1": "#111111",
+      "surface_2": "#1A1A1A"
+    },
+    "text": {
+      "primary": "#F5F5F5",
+      "secondary": "#A1A1AA",
+      "tertiary": "#71717A"
+    },
+    "brand_accents": {
+      "gold_primary": "#D4AF37",
+      "gold_muted": "#B5955C",
+      "gold_glow": "rgba(212, 175, 55, 0.15)"
+    },
+    "borders": {
+      "default": "rgba(255, 255, 255, 0.08)",
+      "hover": "rgba(212, 175, 55, 0.3)"
+    }
+  },
+  "visual_enhancers": {
+    "surfaces": "Use 'GRID BORDERS' look for content cards. Flat solid dark surfaces (#111111) with 1px border-white/10. NO heavy glassmorphism for content cards (keeps it raw and mechanical). Use 'Crystal Glass' ONLY for sticky nav and floating CTAs (bg-black/60 backdrop-blur-xl border-white/10).",
+    "textures": "Subtle grain texture overlay (opacity 2-3%) across the entire background to emulate raw metal/workshop feel.",
+    "shadows": "Remove standard drop shadows on cards. Rely on 1px borders and background contrast for depth. Use soft gold drop-shadows only for hover states on primary CTAs."
+  },
+  "grids_layouts": {
+    "spacing": "Generous Spacing: p-6, p-8, p-12, p-24. Top-level page sections must have py-24 or py-32 minimum.",
+    "services_grid": "MODE A: 'Tetris' Grid. gap-6. Mix col-span-full, col-span-1, row-span-2. Never symmetric squares. Push negative space.",
+    "container": "max-w-7xl mx-auto px-4 md:px-8"
+  },
+  "responsive": {
+    "breakpoint_strategy": "mobile-first",
+    "layout": "Stack grid items on mobile (grid-cols-1). Shift to complex bento/asymmetry on md/lg. Keep heavy/decorative visuals from dominating the mobile viewport.",
+    "typography": "Mobile H1 scales to text-4xl max. Body text minimum 16px to prevent zoom. Headings must use fluid clamp sizes.",
+    "overflow_guard": "Ensure overflow-x-hidden on the main app wrapper. Constrain flex/grid children to prevent unintended horizontal scrolling.",
+    "tap_targets": "min-h-[44px] min-w-[44px] for all interactive elements (buttons, links, inputs). Keep floating WhatsApp in bottom thumb-zone."
+  },
+  "motion_interactions": {
+    "hero_load": "Framer Motion masked line-by-line text reveal on H1 ('COMPLETE ROYAL ENFIELD CARE'). Subtle scale down (1.05 to 1) and slow fade on hero background image.",
+    "scroll": "Lenis smooth scrolling (MANDATORY). Add framer-motion viewport reveals for scroll entrances.",
+    "hover": "Subtle translation (-translate-y-1) + border color shift to gold_muted. No bouncy, generic scale-ups.",
+    "marquee": "Slow editorial ribbon using react-fast-marquee. Gap-32, text-sm tracking-widest, pale gold text on dark background ('METICULOUS MAINTENANCE \u2022 CUSTOM FABRICATION \u2022 ENGINE TUNING')."
+  },
+  "components": {
+    "buttons": "Sharp edges (rounded-none or max rounded-sm). Dark background, gold border, hover:bg-[#D4AF37] hover:text-black transition-colors.",
+    "booking_form": "Shadcn based. Progressive disclosure (Step-by-step UX). Minimal fields per view. Mobile-friendly sticky CTA.",
+    "navigation": "Sticky nav with backdrop-blur-xl. Desktop visible links. Hamburger ONLY on mobile.",
+    "floating_actions": "WhatsApp and Call buttons fixed in bottom-right corner (z-50). Gold icons, dark glass background.",
+    "faq_accordion": "Shadcn accordion. Sharp borders, gold accents on open state."
+  },
+  "accessibility": {
+    "contrast": "APCA minimums. Text over images MUST have gradient overlays (bg-gradient-to-t from-black via-black/60 to-transparent).",
+    "focus": "focus:ring-1 focus:ring-[#D4AF37] focus:outline-none focus:ring-offset-1 focus:ring-offset-black.",
+    "testing": "Add data-testid attributes to all interactive and key informational elements."
+  },
+  "image_urls": [
+    {
+      "category": "hero_motorcycle",
+      "url": "https://images.unsplash.com/photo-1690959129550-3ab92849942f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwxfHxyb3lhbCUyMGVuZmllbGQlMjBtb3RvcmN5Y2xlJTIwZGFyayUyMG1vb2R5fGVufDB8fHx8MTc4NTk2Nzk4N3ww&ixlib=rb-4.1.0&q=85",
+      "description": "Dark moody Royal Enfield parked, perfect for full screen kinetic hero."
+    },
+    {
+      "category": "accessories_close_up",
+      "url": "https://images.unsplash.com/photo-1690959129502-c8174203e9ab?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwyfHxyb3lhbCUyMGVuZmllbGQlMjBtb3RvcmN5Y2xlJTIwZGFyayUyMG1vb2R5fGVufDB8fHx8MTc4NTk2Nzk4N3ww&ixlib=rb-4.1.0&q=85",
+      "description": "Close up of metal handlebars, use for Premium Accessories section."
+    },
+    {
+      "category": "workshop_precision",
+      "url": "https://images.unsplash.com/photo-1636761358757-0a616eb9e17e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwyfHxtb3RvcmN5Y2xlJTIwbWVjaGFuaWMlMjB3b3Jrc2hvcCUyMHByZWNpc2lvbnxlbnwwfHx8fDE3ODU5Njc5ODd8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Man meticulously working in garage. Use for About Us / Expertise."
+    },
+    {
+      "category": "engine_tuning",
+      "url": "https://images.unsplash.com/photo-1683455726905-02c1dfab349f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHw0fHxtb3RvcmN5Y2xlJTIwZW5naW5lJTIwcGFydHMlMjBjbG9zZSUyMHVwfGVufDB8fHx8MTc4NTk2Nzk4N3ww&ixlib=rb-4.1.0&q=85",
+      "description": "Close up of engine parts. Use for Engine/Modifications section."
+    }
+  ],
+  "icons_library": "lucide-react (default) or @phosphor-icons/react (Duotone weight preferred for high-end luxury feel).",
+  "3d_creative_libraries": {
+    "recommendation": "Use framer-motion for UI choreography and scroll reveals. Use react-fast-marquee for editorial ribbons.",
+    "usage": "Rely on rich parallaxing photography and kinetic typography rather than complex 3D canvas libraries to ensure performance."
+  },
+  "instructions_to_main_agent": [
+    "READ THE ENTIRE GUIDELINES JSON.",
+    "DO NOT use generic centered layouts or simplistic uniform styling.",
+    "DO NOT use pure white backgrounds; this is a strictly dark-theme luxury experience. Use #050505 as base.",
+    "Use raw HTML/Tailwind for marketing layout structures; avoid Shadcn layout cards as they are too rigid for creative asymmetry.",
+    "USE Shadcn heavily for the Booking Form, customized to match the dark metallic theme.",
+    "Ensure 'mobile-first' strategy: single columns, touch-friendly CTAs in thumb-zone, legible fonts on mobile.",
+    "Do NOT apply universal transitions (e.g., transition: all). Target specific properties.",
+    "Apply data-testid to every clickable element (buttons, links, form inputs).",
+    "Hero image must have gradient overlay (bg-black/50 or bg-gradient-to-t from-black via-black/40 to-transparent) so white/gold text is perfectly readable.",
+    "Implement Lenis smooth scrolling for premium feel."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Do not make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) strictly for nav/floating elements.",
+    "You MUST NOT apply universal transition. Always add transitions for specific interactive elements like button, input excluding transforms.",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file.",
+    "Always use modern button styles (sharp edges for this project) with interaction animations & color relevant to the app style.",
+    "NEVER use AI assistant Emoji characters.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Main agent relies on these image URLs. Missing categories = main agent will use placeholder text which is FORBIDDEN.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Use sonner for toasts, located in /app/src/components/ui/sonner.js (Note: use .js/.jsx extensions, not .tsx)"
+  ]
+}
