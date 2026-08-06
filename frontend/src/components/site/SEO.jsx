@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export default function SEO({ title, description, path = "" }) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const full = title
       ? `${title} | The Bullet Zone — Royal Enfield Workshop Gachibowli`
       : "The Bullet Zone — Royal Enfield Service, Repairs & Modification | Gachibowli, Hyderabad";
