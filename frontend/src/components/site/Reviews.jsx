@@ -1,8 +1,9 @@
 import { Star } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "./Motion";
-import { REVIEWS } from "../../lib/data";
+import { useContent } from "../../context/ContentContext";
 
 export default function Reviews() {
+  const { reviews } = useContent();
   return (
     <section className="relative border-t border-white/10 py-20 md:py-32" data-testid="reviews-section">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
@@ -14,11 +15,11 @@ export default function Reviews() {
         </Reveal>
 
         <Stagger className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {REVIEWS.map((r, i) => (
+          {(reviews || []).map((r, i) => (
             <StaggerItem key={i}>
               <figure className="hover-lift flex h-full flex-col border border-white/10 bg-[#111111] p-7" data-testid={`review-card-${i}`}>
                 <div className="flex gap-1">
-                  {Array.from({ length: r.rating }).map((_, s) => (
+                  {Array.from({ length: r.rating || 5 }).map((_, s) => (
                     <Star key={s} className="h-4 w-4 fill-[#d4af37] text-[#d4af37]" />
                   ))}
                 </div>

@@ -1,0 +1,26 @@
+{
+  "summary": "Full-stack testing of new Admin CMS + Auth + Upload feature on The Bullet Zone. Backend: 16/16 pytest passing (auth login/me, wrong-password 401, protected-endpoint 401 guards for /bookings, PUT /content, /content/reset, /auth/users [GET&POST], /admin/upload; GET /api/content public with all sections; PUT /content persists and reset restores; image upload -> /api/files/{path} returns 200 with image content-type; non-image rejected 400; bookings CRUD; admin users create/duplicate/self-delete/last-admin guard). Frontend E2E (desktop): /admin redirects to /admin/login when not authenticated; wrong password stays on login; correct login sets tbz_token in localStorage and lands on /admin; edited business tagline saved via PUT /content, immediately reflected on public Home; Bookings and Admins panels load; adding a new admin (E2E Admin) appears in the list and deletion works; Reset to defaults restores original tagline; Logout clears tbz_token and returns to /admin/login. Public regression: all 9 pages (/, /about, /services, /models, /modifications, /accessories, /gallery, /book-service, /contact) render, zero JS console errors, no 'Closed' text present.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/test_admin_cms.py",
+    "/app/backend/tests/test_bullet_zone.py",
+    "/app/test_reports/pytest/pytest_admin_cms.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "auth.py seed_admin correctly updates password_hash if ADMIN_PASSWORD in .env changed (idempotent). bcrypt hash format $2b$ verified.",
+    "server.py: login_attempts lockout kicks in after 5 fails for 15 minutes (429). Tested with a distinct fake email to avoid locking the admin during test runs.",
+    "server.py PUT /content does a shallow top-level merge (current.update(input.data)) — replacing a section replaces the whole section object. This is intentional per admin UI which sends whole sections; documented as expected.",
+    "MongoDB _id correctly stripped in /auth/me, /auth/users, /content, /bookings.",
+    "CORS_ORIGINS='*' with allow_credentials=True is a fastapi/starlette quirk — browser will refuse cookies with wildcard origin. Not a bug here because auth uses Bearer token from localStorage, but flag: if cookie-auth is ever added, set explicit origins.",
+    "storage.py init runs on startup; if it fails, upload endpoint will 502. Startup log currently shows 'Object storage initialized' successfully."
+  ],
+  "updated_files": ["/app/backend/tests/test_admin_cms.py"],
+  "success_rate": {"backend": "100% (16/16)", "frontend": "100% (all critical admin + public flows)"},
+  "test_credentials": "ayub@thebulletzone.in / BulletZone@2026 (from /app/memory/test_credentials.md)",
+  "seed_data_creation": "Test bookings and one E2E admin user were created and cleaned up during tests. POST /api/content/reset was called at the end of E2E to restore default content.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend regression: run `python -m pytest backend/tests/ -o addopts='' -v`. All CMS endpoints work as documented. Admin dashboard testids match spec (admin-nav-*, biz-*, admin-new-*, admin-user-*, admin-save-btn, admin-logout, admin-reset). Content is reset to defaults after the last run so live site shows original tagline 'Complete Royal Enfield Care Under One Roof'. Image upload works via multipart POST /api/admin/upload and files served publicly via GET /api/files/{path}."
+}

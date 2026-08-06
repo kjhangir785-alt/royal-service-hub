@@ -2,9 +2,11 @@ import SEO from "@/components/site/SEO";
 import PageHeader from "@/components/site/PageHeader";
 import { Stagger, StaggerItem } from "@/components/site/Motion";
 import CtaBanner from "@/components/site/CtaBanner";
-import { ACCESSORIES, IMAGES } from "@/lib/data";
+import { useContent } from "@/context/ContentContext";
+import { resolveImg } from "@/lib/api";
 
 export default function Accessories() {
+  const { accessories, accessoriesHeaderImageUrl } = useContent();
   return (
     <>
       <SEO
@@ -16,16 +18,16 @@ export default function Accessories() {
         chapter="Accessories"
         title="Premium gear for the way you ride"
         subtitle="Hand-picked, high-quality accessories for protection, comfort and style — for you and your Royal Enfield."
-        image={IMAGES.helmetVisor}
+        image={resolveImg(accessoriesHeaderImageUrl)}
       />
 
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {ACCESSORIES.map((a, i) => (
-              <StaggerItem key={a.name}>
+            {(accessories || []).map((a, i) => (
+              <StaggerItem key={a.name + i}>
                 <div className="hover-lift group relative aspect-[4/3] overflow-hidden border border-white/10" data-testid={`accessory-card-${i}`}>
-                  <img src={IMAGES[a.img]} alt={a.name} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                  <img src={resolveImg(a.imageUrl)} alt={a.name} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-transparent" />
                   <div className="absolute bottom-0 left-0 flex w-full items-center justify-between p-6">
                     <h3 className="font-display text-xl tracking-tight text-white">{a.name}</h3>

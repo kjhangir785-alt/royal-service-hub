@@ -8,7 +8,8 @@ import EditorialMarquee from "@/components/site/EditorialMarquee";
 import Reviews from "@/components/site/Reviews";
 import Faq from "@/components/site/Faq";
 import CtaBanner from "@/components/site/CtaBanner";
-import { BUSINESS, IMAGES, HIGHLIGHTS, SERVICES, MODELS } from "@/lib/data";
+import { useContent } from "@/context/ContentContext";
+import { resolveImg } from "@/lib/api";
 
 const CHAPTERS = [
   { n: "01", title: "Expertise", text: "Seasoned mechanics who live and breathe Royal Enfield — every bolt torqued to spec, every fault diagnosed with intent." },
@@ -17,6 +18,7 @@ const CHAPTERS = [
 ];
 
 export default function Home() {
+  const { business, hero, highlights, services, models } = useContent();
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
@@ -33,10 +35,9 @@ export default function Home() {
         path="/"
       />
 
-      {/* HERO */}
       <section ref={heroRef} className="relative flex min-h-[100svh] items-end overflow-hidden" data-testid="hero-section">
         <motion.img
-          src={IMAGES.heroBike}
+          src={resolveImg(hero?.imageUrl)}
           alt="Premium Royal Enfield motorcycle at The Bullet Zone workshop"
           style={{ y: bgY, scale: bgScale }}
           className="absolute inset-0 h-full w-full object-cover"
@@ -57,7 +58,7 @@ export default function Home() {
 
           <Reveal delay={0.7}>
             <p className="mt-8 max-w-xl font-body text-base leading-relaxed text-white/70 md:text-lg">
-              Professional Royal Enfield Service, Repairs, Custom Builds & Performance Upgrades. {BUSINESS.tagline}.
+              Professional Royal Enfield Service, Repairs, Custom Builds & Performance Upgrades. {business.tagline}.
             </p>
           </Reveal>
 
@@ -70,21 +71,20 @@ export default function Home() {
             <Link to="/book" data-testid="hero-book-btn" className="flex items-center gap-2 border border-[#d4af37] bg-[#d4af37] px-7 py-4 font-body text-sm uppercase tracking-widest text-black transition-colors duration-300 hover:bg-transparent hover:text-[#d4af37]">
               Book Service <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <a href={`tel:${BUSINESS.phoneRaw}`} data-testid="hero-call-btn" className="flex items-center gap-2 border border-white/25 px-7 py-4 font-body text-sm uppercase tracking-widest text-white backdrop-blur-sm transition-colors duration-300 hover:border-[#d4af37] hover:text-[#d4af37]">
+            <a href={`tel:${business.phoneRaw}`} data-testid="hero-call-btn" className="flex items-center gap-2 border border-white/25 px-7 py-4 font-body text-sm uppercase tracking-widest text-white backdrop-blur-sm transition-colors duration-300 hover:border-[#d4af37] hover:text-[#d4af37]">
               <Phone className="h-4 w-4" /> Call Now
             </a>
-            <a href={`https://wa.me/${BUSINESS.phoneRaw}?text=${waMsg}`} target="_blank" rel="noopener noreferrer" data-testid="hero-whatsapp-btn" className="flex items-center gap-2 border border-white/25 px-7 py-4 font-body text-sm uppercase tracking-widest text-white backdrop-blur-sm transition-colors duration-300 hover:border-[#25D366] hover:text-[#25D366]">
+            <a href={`https://wa.me/${business.whatsapp || business.phoneRaw}?text=${waMsg}`} target="_blank" rel="noopener noreferrer" data-testid="hero-whatsapp-btn" className="flex items-center gap-2 border border-white/25 px-7 py-4 font-body text-sm uppercase tracking-widest text-white backdrop-blur-sm transition-colors duration-300 hover:border-[#25D366] hover:text-[#25D366]">
               <MessageCircle className="h-4 w-4" /> WhatsApp
             </a>
           </motion.div>
         </div>
       </section>
 
-      {/* HIGHLIGHTS */}
       <section className="border-y border-white/10 bg-[#0a0a0a] py-14" data-testid="highlights-section">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <Stagger className="grid grid-cols-2 gap-x-6 gap-y-6 md:grid-cols-3 lg:grid-cols-6">
-            {HIGHLIGHTS.map((h) => (
+            {(highlights || []).map((h) => (
               <StaggerItem key={h} className="flex items-center gap-3">
                 <Check className="h-5 w-5 shrink-0 text-[#d4af37]" />
                 <span className="font-body text-sm text-white/80">{h}</span>
@@ -94,7 +94,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT / MANIFESTO */}
       <section className="relative py-20 md:py-32" data-testid="manifesto-section">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
@@ -107,7 +106,7 @@ export default function Home() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="mt-6 max-w-lg font-body text-base leading-relaxed text-white/60">
-                  The Bullet Zone is a specialist Royal Enfield workshop in Gachibowli, Hyderabad. Under the guidance of {BUSINESS.owner}, we deliver professional repairs, servicing, restoration and customization — all under one roof.
+                  The Bullet Zone is a specialist Royal Enfield workshop in Gachibowli, Hyderabad. Under the guidance of {business.owner}, we deliver professional repairs, servicing, restoration and customization — all under one roof.
                 </p>
               </Reveal>
               <Reveal delay={0.18}>
@@ -136,7 +135,6 @@ export default function Home() {
 
       <EditorialMarquee />
 
-      {/* SERVICES TEASER */}
       <section className="relative py-20 md:py-32" data-testid="services-teaser">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -148,16 +146,19 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.1}>
               <Link to="/services" data-testid="services-teaser-link" className="inline-flex items-center gap-2 border border-white/20 px-6 py-3 font-body text-xs uppercase tracking-widest text-white transition-colors hover:border-[#d4af37] hover:text-[#d4af37]">
-                All 21 Services <ArrowUpRight className="h-4 w-4" />
+                All {(services || []).length} Services <ArrowUpRight className="h-4 w-4" />
               </Link>
             </Reveal>
           </div>
 
           <Stagger className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.slice(0, 6).map((s) => (
+            {(services || []).slice(0, 6).map((s) => (
               <StaggerItem key={s.name}>
                 <div className="hover-lift h-full border border-white/10 bg-[#111111] p-8" data-testid={`service-teaser-${s.name.toLowerCase().replace(/\s+/g, "-")}`}>
-                  <h3 className="font-display text-xl tracking-tight text-white">{s.name}</h3>
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="font-display text-xl tracking-tight text-white">{s.name}</h3>
+                    {s.price ? <span className="shrink-0 font-body text-sm text-[#d4af37]">{s.price}</span> : null}
+                  </div>
                   <p className="mt-3 font-body text-sm leading-relaxed text-white/55">{s.desc}</p>
                 </div>
               </StaggerItem>
@@ -166,7 +167,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MODELS TEASER */}
       <section className="relative overflow-hidden border-t border-white/10 py-20 md:py-32" data-testid="models-teaser">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <Reveal>
@@ -176,7 +176,7 @@ export default function Home() {
             </h2>
           </Reveal>
           <Stagger className="mt-12 flex flex-wrap gap-3">
-            {MODELS.map((m) => (
+            {(models || []).map((m) => (
               <StaggerItem key={m.name}>
                 <span className="inline-flex items-center gap-2 border border-white/10 bg-[#111111] px-5 py-3 font-body text-sm text-white/75 transition-colors duration-300 hover:border-[#d4af37]/40 hover:text-[#d4af37]">
                   {m.name} <span className="text-xs text-white/30">{m.cc}</span>

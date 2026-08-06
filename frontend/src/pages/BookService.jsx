@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { toast } from "sonner";
 import { ArrowUpRight, Loader2, Phone, MessageCircle } from "lucide-react";
 import SEO from "@/components/site/SEO";
@@ -13,15 +12,15 @@ import { Label } from "@/components/ui/label";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
-import { BUSINESS, MODELS, SERVICES } from "@/lib/data";
+import { useContent } from "@/context/ContentContext";
+import { api } from "@/lib/api";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const empty = { name: "", phone: "", bike_model: "", service: "", preferred_date: "", message: "" };
-
 const field =
   "border-white/15 bg-[#0a0a0a] text-white placeholder:text-white/30 focus-visible:ring-1 focus-visible:ring-[#d4af37] focus-visible:ring-offset-0 rounded-none h-12";
 
 export default function BookService() {
+  const { business, models, services } = useContent();
   const [form, setForm] = useState(empty);
   const [loading, setLoading] = useState(false);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
@@ -34,12 +33,12 @@ export default function BookService() {
     }
     setLoading(true);
     try {
-      await axios.post(`${API}/bookings`, form);
+      await api.post(`/bookings`, form);
       toast.success("Booking received! We'll confirm your slot shortly.");
       const msg = encodeURIComponent(
         `New Service Booking — The Bullet Zone\n\nName: ${form.name}\nPhone: ${form.phone}\nBike Model: ${form.bike_model}\nService: ${form.service}\nPreferred Date: ${form.preferred_date || "—"}\nMessage: ${form.message || "—"}`
       );
-      window.open(`https://wa.me/${BUSINESS.phoneRaw}?text=${msg}`, "_blank");
+      window.open(`https://wa.me/${business.whatsapp || business.phoneRaw}?text=${msg}`, "_blank");
       setForm(empty);
     } catch (err) {
       toast.error("Something went wrong. Please call or WhatsApp us directly.");
@@ -79,7 +78,7 @@ export default function BookService() {
                   <Select value={form.bike_model} onValueChange={(v) => set("bike_model", v)}>
                     <SelectTrigger data-testid="booking-bike-model" className={field}><SelectValue placeholder="Select model" /></SelectTrigger>
                     <SelectContent className="max-h-64 border-white/10 bg-[#111111] text-white">
-                      {MODELS.map((m) => (<SelectItem key={m.name} value={m.name} className="focus:bg-[#d4af37]/15 focus:text-[#d4af37]">{m.name}</SelectItem>))}
+                      {(models || []).map((m) => (<SelectItem key={m.name} value={m.name} className="focus:bg-[#d4af37]/15 focus:text-[#d4af37]">{m.name}</SelectItem>))}
                       <SelectItem value="Other Royal Enfield" className="focus:bg-[#d4af37]/15 focus:text-[#d4af37]">Other Royal Enfield</SelectItem>
                     </SelectContent>
                   </Select>
@@ -89,7 +88,7 @@ export default function BookService() {
                   <Select value={form.service} onValueChange={(v) => set("service", v)}>
                     <SelectTrigger data-testid="booking-service" className={field}><SelectValue placeholder="Select service" /></SelectTrigger>
                     <SelectContent className="max-h-64 border-white/10 bg-[#111111] text-white">
-                      {SERVICES.map((s) => (<SelectItem key={s.name} value={s.name} className="focus:bg-[#d4af37]/15 focus:text-[#d4af37]">{s.name}</SelectItem>))}
+                      {(services || []).map((s) => (<SelectItem key={s.name} value={s.name} className="focus:bg-[#d4af37]/15 focus:text-[#d4af37]">{s.name}</SelectItem>))}
                       <SelectItem value="Modification / Custom Build" className="focus:bg-[#d4af37]/15 focus:text-[#d4af37]">Modification / Custom Build</SelectItem>
                     </SelectContent>
                   </Select>
@@ -114,17 +113,17 @@ export default function BookService() {
             <div className="space-y-5">
               <div className="border border-white/10 bg-[#0a0a0a] p-8">
                 <h3 className="font-display text-2xl tracking-tight text-white">Prefer to talk?</h3>
-                <p className="mt-3 font-body text-sm leading-relaxed text-white/55">Reach {BUSINESS.owner} directly — we're happy to advise before you book.</p>
-                <a href={`tel:${BUSINESS.phoneRaw}`} data-testid="book-call" className="mt-6 flex items-center gap-3 border border-white/15 px-5 py-4 font-body text-sm text-white transition-colors hover:border-[#d4af37] hover:text-[#d4af37]">
-                  <Phone className="h-4 w-4 text-[#d4af37]" /> {BUSINESS.phone}
+                <p className="mt-3 font-body text-sm leading-relaxed text-white/55">Reach {business.owner} directly — we're happy to advise before you book.</p>
+                <a href={`tel:${business.phoneRaw}`} data-testid="book-call" className="mt-6 flex items-center gap-3 border border-white/15 px-5 py-4 font-body text-sm text-white transition-colors hover:border-[#d4af37] hover:text-[#d4af37]">
+                  <Phone className="h-4 w-4 text-[#d4af37]" /> {business.phone}
                 </a>
-                <a href={`https://wa.me/${BUSINESS.phoneRaw}`} target="_blank" rel="noopener noreferrer" data-testid="book-whatsapp" className="mt-3 flex items-center gap-3 border border-white/15 px-5 py-4 font-body text-sm text-white transition-colors hover:border-[#25D366] hover:text-[#25D366]">
+                <a href={`https://wa.me/${business.whatsapp || business.phoneRaw}`} target="_blank" rel="noopener noreferrer" data-testid="book-whatsapp" className="mt-3 flex items-center gap-3 border border-white/15 px-5 py-4 font-body text-sm text-white transition-colors hover:border-[#25D366] hover:text-[#25D366]">
                   <MessageCircle className="h-4 w-4 text-[#25D366]" /> Chat on WhatsApp
                 </a>
               </div>
               <div className="border border-[#d4af37]/25 bg-[#0a0a0a] p-8">
                 <h4 className="font-body text-xs uppercase tracking-widest text-[#d4af37]">Working Hours</h4>
-                {BUSINESS.hours.map((h) => (
+                {(business.hours || []).map((h) => (
                   <div key={h.day} className="mt-4 flex justify-between border-b border-white/5 pb-3 font-body text-sm">
                     <span className="text-white/70">{h.day}</span>
                     <span className="text-white">{h.time}</span>

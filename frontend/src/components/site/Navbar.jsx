@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BUSINESS } from "../../lib/data";
+import { useContent } from "../../context/ContentContext";
 
 const LINKS = [
   { to: "/", label: "Home" },
@@ -19,6 +19,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { business } = useContent();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -71,7 +72,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href={`tel:${BUSINESS.phoneRaw}`}
+            href={`tel:${business.phoneRaw}`}
             data-testid="nav-call-btn"
             className="hidden items-center gap-2 border border-white/15 px-4 py-2 font-body text-xs uppercase tracking-widest text-white transition-colors duration-300 hover:border-[#d4af37] hover:text-[#d4af37] md:flex"
           >

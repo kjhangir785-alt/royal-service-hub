@@ -1,0 +1,172 @@
+IMG = {
+    "heroBike": "https://images.unsplash.com/photo-1690959129550-3ab92849942f?crop=entropy&cs=srgb&fm=jpg&q=85&w=2000",
+    "bikeRoad": "https://images.unsplash.com/photo-1690959129506-b704c2314e2f?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "handlebars": "https://images.unsplash.com/photo-1690959129502-c8174203e9ab?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "bikeLakeview": "https://images.unsplash.com/photo-1690959129489-8deffec86677?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "mechanic1": "https://images.unsplash.com/photo-1636761358757-0a616eb9e17e?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "mechanic2": "https://images.unsplash.com/photo-1636761358760-663c29f00352?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "mechanicTools": "https://images.unsplash.com/photo-1636761358770-009ce3957519?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "cafeTank": "https://images.unsplash.com/photo-1697292725452-968c56fc55ba?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "cafeRust": "https://images.unsplash.com/photo-1566977804756-86fd6278b186?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "cafeRed": "https://images.unsplash.com/photo-1693496300171-866151cb6872?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "cafeFront": "https://images.unsplash.com/photo-1545305281-49bc3ecf5412?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "helmetGround": "https://images.unsplash.com/photo-1649027421785-6827863f0891?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "helmetVisor": "https://images.unsplash.com/photo-1611004061856-ccc3cbe944b2?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "rider": "https://images.unsplash.com/photo-1506424482693-1f123321fa53?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "helmetRed": "https://images.unsplash.com/photo-1590506995460-d0d9892b54da?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "engineChrome": "https://images.unsplash.com/photo-1596466588448-6e6ceb1da41c?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "exhaust": "https://images.unsplash.com/photo-1776344204535-d891f5e1954a?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "engineBw": "https://images.unsplash.com/photo-1599905284419-ec448ed606b9?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    "engineDark": "https://images.unsplash.com/photo-1776264693366-23e570d3afed?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+}
+
+_MODEL_ROWS = [
+    ("Bullet 350", "349cc", "Cruiser", "heroBike"),
+    ("Classic 350", "349cc", "Cruiser", "bikeLakeview"),
+    ("Hunter 350", "349cc", "Roadster", "bikeRoad"),
+    ("Meteor 350", "349cc", "Cruiser", "cafeFront"),
+    ("Super Meteor 650", "648cc", "Cruiser", "cafeRust"),
+    ("Himalayan", "452cc", "Adventure", "engineDark"),
+    ("Scram 411", "411cc", "Scrambler", "cafeTank"),
+    ("Interceptor 650", "648cc", "Roadster", "cafeRed"),
+    ("Continental GT 650", "648cc", "Cafe Racer", "handlebars"),
+    ("Guerrilla 450", "452cc", "Roadster", "exhaust"),
+    ("Shotgun 650", "648cc", "Bobber", "engineChrome"),
+]
+
+_SERVICE_ROWS = [
+    ("General Service", "Wrench", "Complete health check and tune-up for smooth everyday riding."),
+    ("Periodic Maintenance", "CalendarCheck", "Scheduled servicing that keeps your Enfield in factory form."),
+    ("Engine Repair", "Cog", "Precision diagnosis and repair of engine faults and noises."),
+    ("Engine Rebuild", "Hammer", "Full teardown and rebuild with genuine internals."),
+    ("Oil Change", "Droplets", "Premium grade oils for optimal lubrication and cooling."),
+    ("Brake Service", "Disc3", "Pads, discs and hydraulics tuned for sure-footed stops."),
+    ("Clutch Repair", "Settings2", "Smooth shifting restored with expert clutch work."),
+    ("Chain & Sprocket", "Link", "Drivetrain inspection, cleaning and replacement."),
+    ("Suspension Repair", "MoveVertical", "Fork and shock servicing for a planted, plush ride."),
+    ("Electrical Repairs", "Zap", "Wiring, lighting and switchgear faults fixed right."),
+    ("Battery Replacement", "BatteryCharging", "Genuine batteries fitted and tested on the spot."),
+    ("Tyre Replacement", "CircleDot", "Quality rubber for every Royal Enfield model."),
+    ("Wheel Alignment", "Compass", "Precise alignment for stability and even tyre wear."),
+    ("EFI Diagnostics", "ScanLine", "Computerised fuel-injection scanning and correction."),
+    ("Performance Tuning", "Gauge", "Unlock throttle response and top-end performance."),
+    ("Ceramic Coating", "Sparkles", "Long-lasting gloss and paint protection."),
+    ("Bike Detailing", "Brush", "Showroom-grade detailing inside and out."),
+    ("Water Wash", "Waves", "Careful foam wash that protects finish and chrome."),
+    ("Accident Repair", "ShieldAlert", "Structural and cosmetic restoration after mishaps."),
+    ("Insurance Assistance", "FileCheck", "End-to-end help with claims and paperwork."),
+    ("Complete Restoration", "Star", "Frame-off restoration of classic Royal Enfields."),
+]
+
+_MOD_ROWS = [
+    ("Custom Seat", "Hand-stitched comfort and touring-ready ergonomics."),
+    ("Custom Paint", "Bespoke liveries sprayed to a mirror finish."),
+    ("LED Lights", "Brighter, sharper, energy-efficient lighting upgrades."),
+    ("Fog Lamps", "Auxiliary lighting for confident night touring."),
+    ("Alloy Wheels", "Lightweight, tubeless-ready premium wheels."),
+    ("Touring Accessories", "Everything you need for the long haul."),
+    ("Crash Guards", "Sturdy protection that looks the part."),
+    ("Luggage Carriers", "Rugged racks built for real-world loads."),
+    ("Handlebars", "Reshape your riding posture and control."),
+    ("Mirrors", "Premium bar-end and classic mirror options."),
+    ("Performance Exhaust", "Deeper note and flow (where legally permitted)."),
+    ("Custom Graphics", "Signature decals and pinstriping."),
+]
+
+_ACC_ROWS = [
+    ("Helmets", "helmetVisor"), ("Jackets", "rider"), ("Gloves", "helmetGround"),
+    ("Mobile Holders", "handlebars"), ("Mirrors", "cafeFront"), ("Lights", "helmetRed"),
+    ("Crash Guards", "engineChrome"), ("Leg Guards", "engineDark"), ("Seat Covers", "cafeTank"),
+    ("Luggage Systems", "cafeRust"), ("Tank Bags", "cafeRed"), ("Bike Covers", "bikeRoad"),
+]
+
+_GALLERY_ROWS = [
+    ("mechanic1", "Workshop"), ("cafeTank", "Modified Bikes"), ("engineChrome", "Before & After"),
+    ("bikeLakeview", "Customer Delivery"), ("helmetVisor", "Accessories"), ("mechanic2", "Service"),
+    ("cafeRust", "Modified Bikes"), ("mechanicTools", "Workshop"), ("handlebars", "Modified Bikes"),
+    ("bikeRoad", "Customer Delivery"), ("exhaust", "Before & After"), ("cafeFront", "Modified Bikes"),
+]
+
+_REVIEWS = [
+    ("Rahul Verma", "Classic 350", "Best Royal Enfield workshop in Gachibowli. My Classic 350 runs like new after their full service. Genuine parts and honest pricing.", 5),
+    ("Sana Fatima", "Meteor 350", "Ayub bhai and team are true professionals. The custom paint and LED upgrade on my Meteor turned out stunning. Highly recommend.", 5),
+    ("Kiran Kumar", "Interceptor 650", "Took my Interceptor for performance tuning. Throttle response is a different world now. Clean workshop, great communication.", 5),
+    ("David Mathew", "Himalayan", "They restored my old Himalayan end to end. Attention to detail is unmatched in Hyderabad. Worth every rupee.", 5),
+    ("Ananya Reddy", "Hunter 350", "Quick service, transparent about what needed fixing, and a spotless detailing job. Finally a workshop I trust.", 5),
+    ("Imran Sheikh", "Continental GT 650", "Cafe racer build of my dreams. The Bullet Zone understood exactly what I wanted. Craftsmanship is top tier.", 5),
+]
+
+_FAQS = [
+    ("Do you service all Royal Enfield models?", "Yes. From the Bullet 350 to the 650 twins and the new Himalayan and Guerrilla 450 — we service every Royal Enfield motorcycle under one roof."),
+    ("Do you use genuine spare parts?", "Absolutely. We use genuine and OEM-grade quality parts, and we always confirm parts and pricing with you before any work begins."),
+    ("How long does a general service take?", "A standard general service is usually completed the same day. Larger jobs like engine rebuilds or restorations are scheduled with a clear timeline."),
+    ("Can I book a service online?", "Yes. Use our Book Service page — fill in your details and we'll confirm your slot over a call or WhatsApp."),
+    ("Do you offer pick-up and drop?", "Please contact us on call or WhatsApp to check pick-up and drop availability for your location in and around Gachibowli."),
+    ("Do you help with insurance claims?", "Yes, we provide end-to-end insurance assistance including paperwork and coordination for accident repairs."),
+]
+
+
+def default_content():
+    return {
+        "business": {
+            "name": "The Bullet Zone",
+            "owner": "Mohammed Ayub",
+            "phone": "+91 8247730083",
+            "phoneRaw": "918247730083",
+            "whatsapp": "918247730083",
+            "tagline": "Complete Royal Enfield Care Under One Roof",
+            "addressLines": [
+                "Hills Lake View Point,",
+                "3-72/28/1, Cross Road,",
+                "Beside IT Heights,",
+                "Madhura Nagar Colony,",
+                "Gachibowli, Khajaguda,",
+                "Hyderabad, Telangana – 500104",
+            ],
+            "addressShort": "Gachibowli, Khajaguda, Hyderabad",
+            "mapsQuery": "The+Bullet+Zone+Hills+Lake+View+Point+Madhura+Nagar+Colony+Gachibowli+Khajaguda+Hyderabad",
+            "hours": [
+                {"day": "Monday – Saturday", "time": "9:00 AM – 11:00 PM"},
+                {"day": "Sunday", "time": "9:00 AM – 11:00 PM"},
+            ],
+        },
+        "hero": {"imageUrl": IMG["heroBike"]},
+        "highlights": ["Expert Mechanics", "Genuine Quality Parts", "Performance Tuning", "Premium Modifications", "Quick Service", "Trusted Workshop"],
+        "about": {
+            "headerImageUrl": IMG["mechanic1"],
+            "image1Url": IMG["mechanic2"],
+            "paragraphs": [
+                "The Bullet Zone is a specialist Royal Enfield workshop offering professional repairs, servicing, restoration, customization and premium motorcycle care. Every motorcycle that rolls in is treated with the precision and respect it deserves.",
+                "From routine periodic maintenance to complete engine rebuilds and stunning custom builds, our team combines deep technical knowledge with an eye for craft. We believe your Royal Enfield isn't just a machine — it's a companion, and we keep it running and looking its absolute best.",
+                "Located at Hills Lake View Point in Gachibowli, Hyderabad, we've earned the trust of riders across the city through honest work, quality parts and a finish that speaks for itself.",
+            ],
+            "stats": [
+                {"v": "5000+", "l": "Bikes Serviced"},
+                {"v": "100%", "l": "Genuine Parts"},
+                {"v": "4.9★", "l": "Rider Rating"},
+                {"v": "All", "l": "RE Models"},
+            ],
+            "values": [
+                "Experienced, Royal Enfield-focused mechanics",
+                "Transparent pricing confirmed before any work",
+                "Genuine & OEM-grade spare parts only",
+                "Clean, organised, professional workshop",
+                "Custom builds and frame-off restorations",
+                "High customer satisfaction and repeat riders",
+            ],
+        },
+        "servicesHeaderImageUrl": IMG["engineChrome"],
+        "services": [{"name": n, "icon": ic, "desc": d, "price": ""} for (n, ic, d) in _SERVICE_ROWS],
+        "modelsHeaderImageUrl": IMG["bikeLakeview"],
+        "models": [{"name": n, "cc": cc, "cat": cat, "imageUrl": IMG[k]} for (n, cc, cat, k) in _MODEL_ROWS],
+        "modificationsHeaderImageUrl": IMG["cafeTank"],
+        "modificationsFeatureImageUrls": [IMG["cafeFront"], IMG["exhaust"]],
+        "modifications": [{"name": n, "desc": d} for (n, d) in _MOD_ROWS],
+        "accessoriesHeaderImageUrl": IMG["helmetVisor"],
+        "accessories": [{"name": n, "imageUrl": IMG[k]} for (n, k) in _ACC_ROWS],
+        "galleryHeaderImageUrl": IMG["mechanicTools"],
+        "gallery": [{"imageUrl": IMG[k], "tag": t} for (k, t) in _GALLERY_ROWS],
+        "ctaImageUrl": IMG["bikeRoad"],
+        "reviews": [{"name": n, "model": m, "text": t, "rating": r} for (n, m, t, r) in _REVIEWS],
+        "faqs": [{"q": q, "a": a} for (q, a) in _FAQS],
+    }

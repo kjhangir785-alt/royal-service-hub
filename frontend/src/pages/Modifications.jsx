@@ -2,9 +2,11 @@ import SEO from "@/components/site/SEO";
 import PageHeader from "@/components/site/PageHeader";
 import { Stagger, StaggerItem, Reveal } from "@/components/site/Motion";
 import CtaBanner from "@/components/site/CtaBanner";
-import { MODIFICATIONS, IMAGES } from "@/lib/data";
+import { useContent } from "@/context/ContentContext";
+import { resolveImg } from "@/lib/api";
 
 export default function Modifications() {
+  const { modifications, modificationsHeaderImageUrl, modificationsFeatureImageUrls = [] } = useContent();
   return (
     <>
       <SEO
@@ -16,16 +18,15 @@ export default function Modifications() {
         chapter="Modifications"
         title="Make it unmistakably yours"
         subtitle="Thoughtful, high-quality modifications that elevate the look, comfort and character of your Royal Enfield — engineered to last, styled to turn heads."
-        image={IMAGES.cafeTank}
+        image={resolveImg(modificationsHeaderImageUrl)}
       />
 
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          {/* feature row */}
           <div className="mb-6 grid gap-5 lg:grid-cols-3">
             <Reveal className="lg:col-span-2">
               <div className="relative h-72 overflow-hidden border border-white/10 lg:h-full">
-                <img src={IMAGES.cafeFront} alt="Custom Royal Enfield build" className="h-full w-full object-cover" />
+                <img src={resolveImg(modificationsFeatureImageUrls[0])} alt="Custom Royal Enfield build" className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8">
                   <span className="font-body text-xs uppercase tracking-[0.25em] text-[#d4af37]">Signature builds</span>
@@ -35,7 +36,7 @@ export default function Modifications() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="relative h-72 overflow-hidden border border-white/10 lg:h-full">
-                <img src={IMAGES.exhaust} alt="Performance exhaust" className="h-full w-full object-cover" />
+                <img src={resolveImg(modificationsFeatureImageUrls[1])} alt="Performance exhaust" className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8">
                   <h3 className="font-display text-2xl tracking-tight text-white">Performance & Sound</h3>
@@ -45,8 +46,8 @@ export default function Modifications() {
           </div>
 
           <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {MODIFICATIONS.map((m, i) => (
-              <StaggerItem key={m.name}>
+            {(modifications || []).map((m, i) => (
+              <StaggerItem key={m.name + i}>
                 <div className="hover-lift flex h-full items-start gap-5 border border-white/10 bg-[#111111] p-7" data-testid={`mod-card-${i}`}>
                   <span className="font-display text-2xl text-[#b5955c]">{String(i + 1).padStart(2, "0")}</span>
                   <div>

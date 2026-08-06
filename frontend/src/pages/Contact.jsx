@@ -2,9 +2,10 @@ import { Phone, MessageCircle, MapPin, Clock, User } from "lucide-react";
 import SEO from "@/components/site/SEO";
 import PageHeader from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Motion";
-import { BUSINESS } from "@/lib/data";
+import { useContent } from "@/context/ContentContext";
 
 export default function Contact() {
+  const { business } = useContent();
   const waMsg = encodeURIComponent("Hi The Bullet Zone, I'd like to enquire about a service.");
   return (
     <>
@@ -25,30 +26,30 @@ export default function Contact() {
             <div className="space-y-4">
               <div className="border border-white/10 bg-[#111111] p-7" data-testid="contact-owner">
                 <div className="flex items-center gap-3 font-body text-xs uppercase tracking-widest text-[#d4af37]"><User className="h-4 w-4" /> Owner</div>
-                <p className="mt-3 font-display text-2xl tracking-tight text-white">{BUSINESS.owner}</p>
+                <p className="mt-3 font-display text-2xl tracking-tight text-white">{business.owner}</p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
-                <a href={`tel:${BUSINESS.phoneRaw}`} data-testid="contact-call" className="hover-lift border border-white/10 bg-[#111111] p-7">
+                <a href={`tel:${business.phoneRaw}`} data-testid="contact-call" className="hover-lift border border-white/10 bg-[#111111] p-7">
                   <div className="flex items-center gap-3 font-body text-xs uppercase tracking-widest text-[#d4af37]"><Phone className="h-4 w-4" /> Phone</div>
-                  <p className="mt-3 font-display text-lg tracking-tight text-white">{BUSINESS.phone}</p>
+                  <p className="mt-3 font-display text-lg tracking-tight text-white">{business.phone}</p>
                 </a>
-                <a href={`https://wa.me/${BUSINESS.phoneRaw}?text=${waMsg}`} target="_blank" rel="noopener noreferrer" data-testid="contact-whatsapp" className="hover-lift border border-white/10 bg-[#111111] p-7">
+                <a href={`https://wa.me/${business.whatsapp || business.phoneRaw}?text=${waMsg}`} target="_blank" rel="noopener noreferrer" data-testid="contact-whatsapp" className="hover-lift border border-white/10 bg-[#111111] p-7">
                   <div className="flex items-center gap-3 font-body text-xs uppercase tracking-widest text-[#25D366]"><MessageCircle className="h-4 w-4" /> WhatsApp</div>
-                  <p className="mt-3 font-display text-lg tracking-tight text-white">{BUSINESS.phone}</p>
+                  <p className="mt-3 font-display text-lg tracking-tight text-white">{business.phone}</p>
                 </a>
               </div>
 
               <div className="border border-white/10 bg-[#111111] p-7" data-testid="contact-address">
                 <div className="flex items-center gap-3 font-body text-xs uppercase tracking-widest text-[#d4af37]"><MapPin className="h-4 w-4" /> Address</div>
                 <p className="mt-3 font-body text-base leading-relaxed text-white/75">
-                  {BUSINESS.addressLines.map((l, i) => (<span key={i} className="block">{l}</span>))}
+                  {(business.addressLines || []).map((l, i) => (<span key={i} className="block">{l}</span>))}
                 </p>
               </div>
 
               <div className="border border-[#d4af37]/25 bg-[#0a0a0a] p-7" data-testid="contact-hours">
                 <div className="flex items-center gap-3 font-body text-xs uppercase tracking-widest text-[#d4af37]"><Clock className="h-4 w-4" /> Working Hours</div>
-                {BUSINESS.hours.map((h) => (
+                {(business.hours || []).map((h) => (
                   <div key={h.day} className="mt-4 flex justify-between border-b border-white/5 pb-3 font-body text-sm">
                     <span className="text-white/70">{h.day}</span>
                     <span className="text-white">{h.time}</span>
@@ -63,7 +64,7 @@ export default function Contact() {
               <iframe
                 title="The Bullet Zone location"
                 data-testid="google-map"
-                src={`https://www.google.com/maps?q=${BUSINESS.mapsQuery}&output=embed`}
+                src={`https://www.google.com/maps?q=${business.mapsQuery}&output=embed`}
                 className="h-full min-h-[420px] w-full grayscale-[0.3] contrast-[1.1]"
                 style={{ border: 0, filter: "invert(0.92) hue-rotate(180deg)" }}
                 loading="lazy"

@@ -1,5 +1,5 @@
 import { Reveal } from "./Motion";
-import { FAQS } from "../../lib/data";
+import { useContent } from "../../context/ContentContext";
 import {
   Accordion,
   AccordionContent,
@@ -8,6 +8,7 @@ import {
 } from "../ui/accordion";
 
 export default function Faq() {
+  const { faqs } = useContent();
   return (
     <section className="relative border-t border-white/10 py-20 md:py-32" data-testid="faq-section">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 md:px-8 lg:grid-cols-[0.8fr_1.2fr]">
@@ -25,7 +26,7 @@ export default function Faq() {
 
         <Reveal delay={0.1}>
           <Accordion type="single" collapsible className="w-full">
-            {FAQS.map((f, i) => (
+            {(faqs || []).map((f, i) => (
               <AccordionItem
                 key={i}
                 value={`item-${i}`}

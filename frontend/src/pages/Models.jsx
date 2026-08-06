@@ -4,15 +4,11 @@ import SEO from "@/components/site/SEO";
 import PageHeader from "@/components/site/PageHeader";
 import { Stagger, StaggerItem, Reveal } from "@/components/site/Motion";
 import CtaBanner from "@/components/site/CtaBanner";
-import { MODELS, IMAGES } from "@/lib/data";
-
-const MODEL_IMG = [
-  IMAGES.heroBike, IMAGES.bikeLakeview, IMAGES.bikeRoad, IMAGES.cafeFront,
-  IMAGES.cafeRust, IMAGES.engineDark, IMAGES.cafeTank, IMAGES.cafeRed,
-  IMAGES.handlebars, IMAGES.exhaust, IMAGES.engineChrome,
-];
+import { useContent } from "@/context/ContentContext";
+import { resolveImg } from "@/lib/api";
 
 export default function Models() {
+  const { models, modelsHeaderImageUrl } = useContent();
   return (
     <>
       <SEO
@@ -24,19 +20,19 @@ export default function Models() {
         chapter="The Line-up"
         title="We service all Royal Enfield motorcycles"
         subtitle="From the timeless Bullet 350 to the muscular 650 twins and the all-new Guerrilla 450 — whatever you ride, we know it inside out."
-        image={IMAGES.bikeLakeview}
+        image={resolveImg(modelsHeaderImageUrl)}
       />
 
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {MODELS.map((m, i) => (
-              <StaggerItem key={m.name}>
+            {(models || []).map((m, i) => (
+              <StaggerItem key={m.name + i}>
                 <div className="hover-lift group relative overflow-hidden border border-white/10 bg-[#111111]" data-testid={`model-card-${i}`}>
                   <div className="relative h-56 overflow-hidden">
-                    <img src={MODEL_IMG[i % MODEL_IMG.length]} alt={`Royal Enfield ${m.name}`} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                    <img src={resolveImg(m.imageUrl)} alt={`Royal Enfield ${m.name}`} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent" />
-                    <span className="absolute left-4 top-4 border border-white/20 bg-black/50 px-3 py-1 font-body text-[10px] uppercase tracking-widest text-white backdrop-blur-md">{m.cat}</span>
+                    {m.cat ? <span className="absolute left-4 top-4 border border-white/20 bg-black/50 px-3 py-1 font-body text-[10px] uppercase tracking-widest text-white backdrop-blur-md">{m.cat}</span> : null}
                   </div>
                   <div className="flex items-center justify-between p-6">
                     <div>
