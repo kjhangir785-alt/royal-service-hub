@@ -10,7 +10,7 @@ export default function Contact() {
     <>
       <SEO
         title="Contact — Royal Enfield Workshop in Gachibowli, Hyderabad"
-        description="Contact The Bullet Zone Royal Enfield workshop at Hills Lake View Point, Madhura Nagar Colony, Gachibowli, Khajaguda, Hyderabad. Call +91 8247730083 or WhatsApp. Open Mon–Sat 9 AM – 11 PM."
+        description="Contact The Bullet Zone Royal Enfield workshop at Hills Lake View Point, Madhura Nagar Colony, Gachibowli, Khajaguda, Hyderabad. Call +91 8247730083 or WhatsApp. Open all days 9 AM – 11 PM."
         path="/contact"
       />
       <PageHeader

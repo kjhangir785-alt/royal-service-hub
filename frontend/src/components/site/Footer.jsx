@@ -47,7 +47,7 @@ export default function Footer() {
           </p>
           <p className="mt-4 flex gap-3 font-body text-sm text-white/60">
             <Clock className="mt-0.5 h-4 w-4 shrink-0 text-[#d4af37]" />
-            <span>Mon–Sat: 9 AM – 11 PM<br />Sunday: Closed</span>
+            <span>Open All Days<br />9 AM – 11 PM</span>
           </p>
         </div>
 

@@ -1,0 +1,35 @@
+{
+  "summary": "Full-stack regression for The Bullet Zone. Backend (4/4 pytest passing): GET /api/, POST /api/bookings, GET /api/bookings, and 422 validation. Frontend: verified Sunday-OPEN change across Contact hours, Book Service hours, footer ('Open All Days 9 AM - 11 PM'), Home hero & floating buttons. Zero occurrences of 'Closed' anywhere on the site across all 9 pages. Booking form E2E works end-to-end (POST 200, success toast, WhatsApp prefill URL captured via window.open shim). Google Maps iframe renders with correct src. All tel:/wa.me hrefs use 918247730083. Gallery filter switches image count (14 -> 4). Mobile viewport (390x844) has 0px horizontal overflow. JSON-LD in index.html includes Sunday in openingHoursSpecification.",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Navbar/MobileMenu", "issue": "data-testid='mobile-menu' element not present in DOM on mobile viewport. Hamburger toggle is not exposed with the documented testid, making mobile menu open/close automation impossible. Verify the drawer wraps its container with data-testid='mobile-menu'.", "selector": "[data-testid='mobile-menu']", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [
+      {"flow": "SEO title updates on navigation", "issue": "Page <title> lags by one navigation step. After clicking nav-link-services (URL /services), title still reads the About page title; /models shows the Services title, etc. Likely a state/effect ordering issue in components/site/SEO.jsx (title being set from previous route). Meta description likely affected similarly.", "affected_selectors": ["head > title"]}
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_bullet_zone.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Add data-testid='mobile-menu' to the mobile drawer/menu container in the navbar.",
+    "Fix SEO component so <title>/description update synchronously with the active route (title currently reflects the previous page after client-side navigation)."
+  ],
+  "critical_code_review_comments": [
+    "server.py: GET /api/bookings correctly excludes _id. Good.",
+    "BookService.jsx: form uses REACT_APP_BACKEND_URL via env - correct. Consider trimming/validating phone format before submit.",
+    "SEO.jsx suspected: title updates may be racing with route change (see integration issue).",
+    "index.html JSON-LD correctly lists all 7 days including Sunday with 09:00-23:00."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "~90%"},
+  "test_credentials": "N/A",
+  "seed_data_creation": "Created a few TEST_-prefixed bookings via backend tests and one via UI (TEST_UIRider). Persisted in MongoDB collection 'bookings'.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Sunday-OPEN fix is verified everywhere (no 'Closed' on site). Booking flow, Maps, hrefs, gallery filter, mobile overflow all OK. Two open items: (1) missing data-testid='mobile-menu'; (2) SEO title lags by one nav step. Re-run /app/backend/tests/test_bullet_zone.py and the Playwright nav+title check after fixes.",
+  "rca of the issue": "SEO title lag: SEO component likely calls document.title in an effect that runs after the previous page's SEO effect has already mounted; alternatively react-helmet or similar is not being flushed before Playwright's networkidle assertion. Suggest using useLayoutEffect or ensuring Helmet is properly mounted at the top-level router."
+}

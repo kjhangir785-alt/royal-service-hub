@@ -17,7 +17,7 @@ export const BUSINESS = {
   addressShort: "Gachibowli, Khajaguda, Hyderabad",
   hours: [
     { day: "Monday – Saturday", time: "9:00 AM – 11:00 PM" },
-    { day: "Sunday", time: "Closed" },
+    { day: "Sunday", time: "9:00 AM – 11:00 PM" },
   ],
   mapsQuery:
     "The+Bullet+Zone+Hills+Lake+View+Point+Madhura+Nagar+Colony+Gachibowli+Khajaguda+Hyderabad",
