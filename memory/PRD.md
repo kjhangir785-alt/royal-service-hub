@@ -31,4 +31,13 @@ Home, About, Services (21), Models (11), Modifications (12), Accessories (12), G
 - P2: Real map API key for richer map, email notifications on booking.
 
 ## Next Tasks
-- Swap in real photos and testimonials when provided.
+- Swap in real photos and testimonials when provided (now doable via Admin Dashboard).
+
+## Admin Dashboard / CMS (added 2026-06)
+- **Owner login** at `/admin/login` (JWT email+password). Seeded admin: `ayub@thebulletzone.in` / `BulletZone@2026` (from backend/.env ADMIN_EMAIL/ADMIN_PASSWORD; change these to rotate).
+- **Fully editable content** (no code) via `/admin`: business info (phone, WhatsApp, address, working hours, tagline, maps), services + optional prices ("Contact for price" when empty), models, modifications, accessories, gallery, reviews, About text, FAQ, and section header images.
+- **Direct image uploads** to Emergent object storage (`POST /api/admin/upload` → `/api/files/{path}` public serve).
+- **Bookings panel** (view + delete) and **Admin Users** panel (add/remove more admins).
+- Architecture: content stored as a singleton doc in Mongo (`site_content`), served at public `GET /api/content`; frontend reads it via `ContentContext` (falls back to `lib/data.js` defaults). Auth = Bearer JWT in localStorage `tbz_token`. `POST /api/content/reset` restores defaults.
+- Verified: backend 16/16 pytest, frontend E2E 100% (edits reflect live on public site, uploads render, auth guards enforced).
+
