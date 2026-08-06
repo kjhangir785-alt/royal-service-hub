@@ -1,0 +1,71 @@
+import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import SEO from "@/components/site/SEO";
+import PageHeader from "@/components/site/PageHeader";
+import { Stagger, StaggerItem, Reveal } from "@/components/site/Motion";
+import CtaBanner from "@/components/site/CtaBanner";
+import { MODELS, IMAGES } from "@/lib/data";
+
+const MODEL_IMG = [
+  IMAGES.heroBike, IMAGES.bikeLakeview, IMAGES.bikeRoad, IMAGES.cafeFront,
+  IMAGES.cafeRust, IMAGES.engineDark, IMAGES.cafeTank, IMAGES.cafeRed,
+  IMAGES.handlebars, IMAGES.exhaust, IMAGES.engineChrome,
+];
+
+export default function Models() {
+  return (
+    <>
+      <SEO
+        title="Royal Enfield Models We Service"
+        description="We service all Royal Enfield models in Hyderabad — Bullet 350, Classic 350, Hunter 350, Meteor 350, Super Meteor 650, Himalayan, Scram 411, Interceptor 650, Continental GT 650, Guerrilla 450 and Shotgun 650."
+        path="/models"
+      />
+      <PageHeader
+        chapter="The Line-up"
+        title="We service all Royal Enfield motorcycles"
+        subtitle="From the timeless Bullet 350 to the muscular 650 twins and the all-new Guerrilla 450 — whatever you ride, we know it inside out."
+        image={IMAGES.bikeLakeview}
+      />
+
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {MODELS.map((m, i) => (
+              <StaggerItem key={m.name}>
+                <div className="hover-lift group relative overflow-hidden border border-white/10 bg-[#111111]" data-testid={`model-card-${i}`}>
+                  <div className="relative h-56 overflow-hidden">
+                    <img src={MODEL_IMG[i % MODEL_IMG.length]} alt={`Royal Enfield ${m.name}`} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent" />
+                    <span className="absolute left-4 top-4 border border-white/20 bg-black/50 px-3 py-1 font-body text-[10px] uppercase tracking-widest text-white backdrop-blur-md">{m.cat}</span>
+                  </div>
+                  <div className="flex items-center justify-between p-6">
+                    <div>
+                      <h3 className="font-display text-xl tracking-tight text-white">{m.name}</h3>
+                      <span className="font-body text-xs uppercase tracking-widest text-[#b5955c]">{m.cc}</span>
+                    </div>
+                    <Link to="/book" data-testid={`model-book-${i}`} className="flex h-10 w-10 items-center justify-center border border-white/15 text-white transition-colors duration-300 hover:border-[#d4af37] hover:text-[#d4af37]">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+
+          <Reveal delay={0.1}>
+            <div className="mt-12 border border-[#d4af37]/30 bg-[#0a0a0a] p-8 text-center md:p-12">
+              <p className="font-display text-2xl tracking-tight text-white md:text-3xl">
+                Ride something else? <span className="text-gradient-gold">We service all Royal Enfield motorcycles.</span>
+              </p>
+              <Link to="/book" data-testid="models-cta-book" className="mt-6 inline-flex items-center gap-2 border border-[#d4af37] bg-[#d4af37] px-7 py-3.5 font-body text-sm uppercase tracking-widest text-black transition-colors duration-300 hover:bg-transparent hover:text-[#d4af37]">
+                Book Your Bike In
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <CtaBanner />
+    </>
+  );
+}
