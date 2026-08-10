@@ -40,6 +40,9 @@
     "cra-template": "1.2.0",
     "date-fns": "^2.30.0",
     "dayjs": "1.11.13",
+    "ajv": "^8.12.0",
+    "ajv-keywords": "^5.1.0",
+
    
     "embla-carousel-react": "8.6.0",
     "framer-motion": "11.18.0",
