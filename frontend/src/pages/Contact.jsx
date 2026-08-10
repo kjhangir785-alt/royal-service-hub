@@ -40,12 +40,25 @@ export default function Contact() {
                 </a>
               </div>
 
-              <div className="border border-white/10 bg-[#111111] p-7" data-testid="contact-address">
-                <div className="flex items-center gap-3 font-body text-xs uppercase tracking-widest text-[#d4af37]"><MapPin className="h-4 w-4" /> Address</div>
-                <p className="mt-3 font-body text-base leading-relaxed text-white/75">
-                  {(business.addressLines || []).map((l, i) => (<span key={i} className="block">{l}</span>))}
-                </p>
-              </div>
+              
+<a
+  href="https://maps.app.goo.gl/PYmb6eLMy4yLcSKR9"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block"
+>
+  <div className="border border-white/10 bg-[#111111] p-7 hover:border-[#d4af37] transition-colors" data-testid="contact-address">
+    <div className="flex items-center gap-3 font-body text-xs uppercase tracking-widest text-[#d4af37]">
+      <MapPin className="h-4 w-4" /> Address
+    </div>
+    <p className="mt-3 font-body text-base leading-relaxed text-white/75">
+      {(business.addressLines || []).map((l, i) => (
+        <span key={i} className="block">{l}</span>
+      ))}
+    </p>
+  </div>
+</a>
+
 
               <div className="border border-[#d4af37]/25 bg-[#0a0a0a] p-7" data-testid="contact-hours">
                 <div className="flex items-center gap-3 font-body text-xs uppercase tracking-widest text-[#d4af37]"><Clock className="h-4 w-4" /> Working Hours</div>
