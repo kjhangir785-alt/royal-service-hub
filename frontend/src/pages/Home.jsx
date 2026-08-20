@@ -68,9 +68,6 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.85 }}
             className="mt-10 flex flex-wrap gap-3 md:gap-4"
           >
-            <Link to="/book" data-testid="hero-book-btn" className="flex items-center gap-2 border border-[#d4af37] bg-[#d4af37] px-7 py-4 font-body text-sm uppercase tracking-widest text-black transition-colors duration-300 hover:bg-transparent hover:text-[#d4af37]">
-              Book Service <ArrowUpRight className="h-4 w-4" />
-            </Link>
             <a href={`tel:${business.phoneRaw}`} data-testid="hero-call-btn" className="flex items-center gap-2 border border-white/25 px-7 py-4 font-body text-sm uppercase tracking-widest text-white backdrop-blur-sm transition-colors duration-300 hover:border-[#d4af37] hover:text-[#d4af37]">
               <Phone className="h-4 w-4" /> Call Now
             </a>
