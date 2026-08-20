@@ -20,9 +20,7 @@ export default function CtaBanner() {
             Give your Royal Enfield the care it deserves.
           </h2>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link to="/book" data-testid="cta-book-btn" className="flex items-center border border-[#d4af37] bg-[#d4af37] px-8 py-4 font-body text-sm uppercase tracking-widest text-black transition-colors duration-300 hover:bg-transparent hover:text-[#d4af37]">
-              Book Service
-            </Link>
+            
             <a href={`tel:${business.phoneRaw}`} data-testid="cta-call-btn" className="flex items-center gap-2 border border-white/20 px-8 py-4 font-body text-sm uppercase tracking-widest text-white transition-colors duration-300 hover:border-[#d4af37] hover:text-[#d4af37]">
               <Phone className="h-4 w-4" /> Call Now
             </a>
