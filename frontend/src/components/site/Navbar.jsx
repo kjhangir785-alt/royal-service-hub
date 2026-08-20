@@ -78,13 +78,7 @@ export default function Navbar() {
           >
             <Phone className="h-3.5 w-3.5" /> Call
           </a>
-          <Link
-            to="/book"
-            data-testid="nav-book-btn"
-            className="hidden items-center border border-[#d4af37] bg-[#d4af37] px-5 py-2 font-body text-xs uppercase tracking-widest text-black transition-colors duration-300 hover:bg-transparent hover:text-[#d4af37] md:flex"
-          >
-            Book Service
-          </Link>
+          
           <button
             onClick={() => setOpen((v) => !v)}
             data-testid="nav-menu-toggle"
@@ -117,13 +111,7 @@ export default function Navbar() {
                   {l.label}
                 </Link>
               ))}
-              <Link
-                to="/book"
-                data-testid="mobile-book-btn"
-                className="mt-4 flex items-center justify-center bg-[#d4af37] py-3.5 font-body text-sm uppercase tracking-widest text-black"
-              >
-                Book Service
-              </Link>
+             
             </nav>
           </motion.div>
         )}
