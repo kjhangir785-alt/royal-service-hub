@@ -112,7 +112,7 @@ def default_content():
             "name": "The Bullet Zone",
             "owner": "Mohammed Ayub",
             "phone": "+91 8247730083",
-            "phoneRaw": "918247730083",
+            "phoneRaw": "+918247730083",
             "whatsapp": "918247730083",
             "tagline": "Complete Royal Enfield Care Under One Roof",
             "addressLines": [
