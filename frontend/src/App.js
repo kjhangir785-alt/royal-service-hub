@@ -14,7 +14,6 @@ import Models from "@/pages/Models";
 import Modifications from "@/pages/Modifications";
 import Accessories from "@/pages/Accessories";
 import Gallery from "@/pages/Gallery";
-import BookService from "@/pages/BookService";
 import Contact from "@/pages/Contact";
 import AdminLogin from "@/pages/admin/AdminLogin";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
@@ -34,7 +33,6 @@ function App() {
                 <Route path="/modifications" element={<Modifications />} />
                 <Route path="/accessories" element={<Accessories />} />
                 <Route path="/gallery" element={<Gallery />} />
-                <Route path="/book" element={<BookService />} />
                 <Route path="/contact" element={<Contact />} />
               </Route>
               <Route path="/admin/login" element={<AdminLogin />} />
