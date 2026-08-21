@@ -30,7 +30,7 @@ export default function Footer() {
               ["Modifications", "/modifications"],
               ["Accessories", "/accessories"],
               ["Gallery", "/gallery"],
-              ["Book Service", "/book"],
+              
             ].map(([label, to]) => (
               <li key={to}>
                 <Link to={to} className="transition-colors hover:text-[#d4af37]" data-testid={`footer-link-${label.toLowerCase().replace(/\s+/g, "-")}`}>
