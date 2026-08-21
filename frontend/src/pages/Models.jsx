@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+
 import { Link } from "react-router-dom";
 import SEO from "@/components/site/SEO";
 import PageHeader from "@/components/site/PageHeader";
@@ -39,9 +39,7 @@ export default function Models() {
                       <h3 className="font-display text-xl tracking-tight text-white">{m.name}</h3>
                       <span className="font-body text-xs uppercase tracking-widest text-[#b5955c]">{m.cc}</span>
                     </div>
-                    <Link to="/book" data-testid={`model-book-${i}`} className="flex h-10 w-10 items-center justify-center border border-white/15 text-white transition-colors duration-300 hover:border-[#d4af37] hover:text-[#d4af37]">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </Link>
+                    
                   </div>
                 </div>
               </StaggerItem>
@@ -53,9 +51,7 @@ export default function Models() {
               <p className="font-display text-2xl tracking-tight text-white md:text-3xl">
                 Ride something else? <span className="text-gradient-gold">We service all Royal Enfield motorcycles.</span>
               </p>
-              <Link to="/book" data-testid="models-cta-book" className="mt-6 inline-flex items-center gap-2 border border-[#d4af37] bg-[#d4af37] px-7 py-3.5 font-body text-sm uppercase tracking-widest text-black transition-colors duration-300 hover:bg-transparent hover:text-[#d4af37]">
-                Book Your Bike In
-              </Link>
+              
             </div>
           </Reveal>
         </div>
