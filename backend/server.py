@@ -58,24 +58,7 @@ async def root():
     return {"message": "The Bullet Zone API is running"}
 
 
-# ---------- Bookings ----------
-@api_router.post("/bookings", response_model=Booking)
-async def create_booking(input: BookingCreate):
-    booking = Booking(**input.model_dump())
-    await db.bookings.insert_one(booking.model_dump())
-    return booking
 
-
-@api_router.get("/bookings", response_model=List[Booking])
-async def get_bookings(user: dict = Depends(current_user)):
-    bookings = await db.bookings.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
-    return [Booking(**b) for b in bookings]
-
-
-@api_router.delete("/bookings/{booking_id}")
-async def delete_booking(booking_id: str, user: dict = Depends(current_user)):
-    await db.bookings.delete_one({"id": booking_id})
-    return {"ok": True}
 
 
 # ---------- Auth ----------
