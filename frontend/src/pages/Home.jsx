@@ -52,7 +52,7 @@ export default function Home() {
             </span>
           </motion.div>
 
-          <h1 className="mt-6 font-display text-[15vw] font-semibold leading-[0.9] tracking-tighter text-white sm:text-7xl md:text-8xl lg:text-[8.5rem]">
+          <h1 className="mt-2 font-display text-[15vw] font-semibold leading-[0.9] tracking-tighter text-white sm:text-7xl md:text-8xl lg:text-[8.5rem]">
             <MaskedLines lines={["THE BULLET", <span key="z" className="text-gradient-gold">ZONE</span>]} delay={0.15} />
           </h1>
 
