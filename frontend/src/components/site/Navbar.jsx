@@ -46,7 +46,8 @@ export default function Navbar() {
           <span className="font-display text-base tracking-tight text-white md:text-lg">
             THE BULLET <span className="gold-text">ZONE</span>
           </span>
-        </Link>
+          </span>
+          </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
           {LINKS.map((l) => {
