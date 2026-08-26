@@ -42,8 +42,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-8">
         <Link to="/" data-testid="nav-logo" className="group flex items-center gap-3">
           <span className="flex h-9 w-9 items-center justify-center border border-[#d4af37]/50 text-[#d4af37]">
-            <span className="font-display text-lg leading-none">B</span>
-          </span>
+            <span className="font-display text-sm leading-none">TBZ</span>
           <span className="font-display text-base tracking-tight text-white md:text-lg">
             THE BULLET <span className="gold-text">ZONE</span>
           </span>
